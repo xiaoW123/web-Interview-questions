@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>1</div>
+  <script src="./09.MyPromise.js"></script>
+
+  <script>
+    const p1 = new MyPromise((resolve, reject) => {
+      resolve(100)
+    })
+    // console.log(p1);
+    // p1.then(res => {
+    //   console.log(res);
+    // })
+    const p2 = MyPromise.resolve(100)
+    // console.log('p2---', p2);
+    const p3 = MyPromise.resolve(200)
+    const p4 = MyPromise.resolve(300)
+    const p5 = MyPromise.reject('错误信息')
+    console.log('p5---', p5);
+    const p6 = MyPromise.race([p5, p3, p4])
+    console.log('p6---', p6);
+    const p7 = MyPromise.all([p2, p3, p4])
+    console.log('p7---', p7);
+    // p5.then(data => {
+    //   console.log('p5---', data);
+    // })
+  </script>
+</body>
+
+</html>
