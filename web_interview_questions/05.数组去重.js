@@ -1,18 +1,23 @@
-const arr = [1, 2, 2, 4, 5, 6, 5, 5, 5, 3, 2, 2, 1]
-function unique(arr) {
-  // 返回元素第一次出现的索引的元素
+// 数组去重
+// 1.使用filter-indexOf
+let arr = [1, 2, 2, 33, 33, 1, 2, 32312, 123]
+function unique1(arr) {
   return arr.filter((item, index) => {
+    // 第一次出现的索引===元素索引
     return arr.indexOf(item, 0) === index
   })
 }
-console.log(unique(arr));
+// const newArr = unique1(arr)
+// console.log(newArr);
 
-function uniaue2(arr) {
-  // 利用Set去重，再把其转换为真的数组
+// 2.使用Set
+function unique2(arr) {
   return Array.from(new Set(arr))
 }
-console.log(uniaue2(arr));
+// const newArr = unique2(arr)
+// console.log(newArr);
 
+// 3.for循环
 function unique3(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
@@ -24,4 +29,5 @@ function unique3(arr) {
   }
   return arr
 }
-console.log(unique3(arr));
+// const newArr = unique3(arr)
+// console.log(newArr);

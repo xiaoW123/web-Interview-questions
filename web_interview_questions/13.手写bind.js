@@ -27,3 +27,19 @@ Function.prototype.bind1 = function () {
     return self.apply(t, args)
   }
 }
+
+Function.prototype.newBind = function () {
+  const args = Array.from(arguments)  // 把参数转为数组
+  const t = args.shift()
+  const self = this // 记录调用者的this
+
+  return function () {
+    return self.apply(t, args)
+  }
+}
+
+function fn1() {
+  console.log('fn1--', this);
+}
+const newFn2 = fn1.newBind({ a: 200 }, 1, 23)
+newFn2()

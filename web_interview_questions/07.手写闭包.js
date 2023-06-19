@@ -9,7 +9,8 @@
 // let f = fn()
 // f() // 10,访问到了内部的num变量
 
-// // 函数作为返回值
+
+// 函数作为返回值
 // function create() {
 //   let a = 100
 //   return function () {

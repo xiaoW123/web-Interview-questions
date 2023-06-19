@@ -1,5 +1,8 @@
-let arr = [2, 3, 4, 5, 1, 21, 34]
-function mp(arr) {
+// 数组排序
+let arr = [1, 2, 5, 3, 6, 9, 8, 7]
+
+// 冒泡排序
+function sort1(arr) {
   for (let i = 0; i < arr.length - 1; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
       if (arr[j] > arr[j + 1]) {
@@ -10,29 +13,25 @@ function mp(arr) {
     }
   }
 }
+sort1(arr)
 
-console.log(mp(arr), arr);
 
 // 快速排序
-// 原理：随机取一个元素对数组进行比较，小的放左边，大的放右边
-function kspx(arr) {
-  if (arr.length == 1 || arr.length == 0) {
-    return arr
-  }
-
-  let index = Math.floor(arr.length / 2) // 获取中间元素的索引
-  let currentItem = arr.splice(index, 1) // 取出这个元素，该数组中就没有该元素了
-  let left = [], right = []
-  // 遍历数组，小于等于的元素放左边
+function sort2(arr) {
+  if (arr.length == 1 || arr.length == 0) return arr
+  const index = Math.floor(arr.length / 2)
+  const currentItem = arr.splice(index, 1)
+  let left = [], rigth = []
   arr.forEach(item => {
     if (item <= currentItem) {
       left.push(item)
-    } else {
-      right.push(item)
     }
-  })
-  // 第1轮比较完毕后，再用递归比较left与right中的数组，直到left，right为 [ ]
-  // 比较完后拼接
-  return kspx(left).concat(currentItem).concat(kspx(right))
+    if (item > currentItem) {
+      rigth.push(item)
+    }
+  });
+  return sort2(left).concat(currentItem).concat(sort2(rigth))
 }
-console.log(kspx(arr));
+
+const newArr = sort2(arr)
+console.log(newArr);

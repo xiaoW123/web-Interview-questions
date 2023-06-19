@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <input type="text" class="input">
   <script>
     const inp = document.querySelector('.input')
-    // 定义防抖函数
-    let timer = null
-    let time = 500
-    function fd(value) {
-      timer = setTimeout(function(){
-        console.log(value);
-      },time)
+
+    inp.addEventListener('input', debounce(function () {
+      console.log(this.value);
+    }))
+    // 定义节流-单位时间内再次执行函数,不会再重新计时
+    function throttle(fn, time = 1000) {
+      let timer = null
+      return function () {
+        if (timer) return
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+          timer = null
+        }, time)
+      }
     }
-
-    inp.addEventListener('input',()=>{
-      // clearInterval(timer)
-      // fd(inp.value)  // 一直输入，只执行一次
-      jl(inp.value) // 一直输入，每隔1s执行一次
-    })
-
-    // 定义节流函数 
-    let timers = null     // 定义节流阀
-    function jl(value){ 
-      if(timers) return   // timers不为空表示还没执行完
-      timers = setTimeout(()=>{
-        // 执行内容
-        // xxx
-        console.log(value);
-        timers = null
-      },1000)
+    // 定义防抖-debounce
+    function debounce(fn, time = 1000) {
+      let timer = null
+      return function () {
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+          timer = null
+        }, time)
+      }
     }
   </script>
 </body>
+
 </html>

@@ -12,7 +12,7 @@ console.log('1---', obj1.address.city);  // jx
 console.log('2---', obj2.address.city);  // zg
 
 function deepClone(obj = {}) {
-  // obj是null或者不是对象和数组
+  // obj是null或者不是对象和数组,不是的话说明是普通数据类型,直接返回
   if (typeof obj !== 'object' || obj == null) {
     return obj
   }
@@ -23,7 +23,6 @@ function deepClone(obj = {}) {
   } else {
     result = {}
   }
-
   for (let key in obj) {
     // hasOwnProperty() 方法返回一个布尔值，
     // 表示对象自有属性（而不是继承来的属性）中是否具有指定的属性。
@@ -35,3 +34,4 @@ function deepClone(obj = {}) {
   // 返回结果
   return result
 }
+
